@@ -23,14 +23,7 @@ def scrape_weather():
     rain_afternoon = rain_morning.next_sibling.next_sibling
     min_temp = soup.find("span", attrs = {"class" : "lowest"}).get_text() # 최저기온
     max_temp = soup.find("span", attrs = {"class" : "highest"}).get_text() # 최고기온
-    
-    # 대기정보
-    atmosphere = soup.find("ul", attrs = {"class" : "today_chart_list"})
-    fine_dust = atmosphere.find("li", attrs = {"class" : "item_today level1"}) # 미세먼지
-    
-    ultra_fine_dust = fine_dust.next_sibling.next_sibling # 초미세먼지
-    uv = ultra_fine_dust.next_sibling.next_sibling # 자외선
-    sunset = uv.next_sibling.next_sibling # 일몰
+  
     
     # 현재 온도, 기상 상황, 최저기온, 최고기온, 오전 오후 강수확률
     print(current_temp)
@@ -39,8 +32,7 @@ def scrape_weather():
     print(rain)
     print("{} / {}".format(rain_morning.get_text(), rain_afternoon.get_text()))
     
-    # 대기정보
-    print("{} / {} / {} / {}".format(fine_dust.get_text(), ultra_fine_dust.get_text(), uv.get_text(), sunset.get_text()))
+   
     
 
 
@@ -56,5 +48,6 @@ def scrape_news():
         print(" 링크 : {}". format(link))
     
 if __name__ == "__main__":
-    # scrape_weather()
+    scrape_weather()
+    print('\n')
     scrape_news()
